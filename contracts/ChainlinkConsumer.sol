@@ -29,22 +29,24 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
         string memory endpoint = "/standings"; 
         league = _league;
         URL = baseURL.concat(league).concat(endpoint);
-        setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
-        setChainlinkOracle(0x7ecFBD6CB2D3927Aa68B5F2f477737172F11190a);
-//jobId = "3d2529ce26a74c9d9e593750d94950c9";
-        jobId = "cd3a5f8dcac245e9a3ff58d59b445595";
-        fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18
+        setChainlinkOracle(0x7ca7215c6B8013f249A195cc107F97c4e623e5F5); //Polygon Oracle run by OracleSpace Labs
+        // setChainlinkOracle(0xC29bC7fc567966b84E54093e6AfF0476d5684d3e); //Polygon oracle (my own)
+        // setChainlinkToken(0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2); //Polygon LINK Token
+        setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB); //Goerli LINK Token
+        //jobId = "3d2529ce26a74c9d9e593750d94950c9"; //single response job
+        jobId = "cd3a5f8dcac245e9a3ff58d59b445595"; //multi response job
+        fee = (1 * LINK_DIVISIBILITY) / 20; // 0,05 * 10**18
     }
 
     /**
      * Create a Chainlink request to retrieve API response, then find the target
      * data.
      */
-    function requestWinner() public returns (bytes32 requestId) {
+    function requestWinner() public virtual returns (bytes32 requestId) {
         Chainlink.Request memory req = buildChainlinkRequest(
             jobId,
             address(this),
-            this.fulfillOracleRequest2.selector
+            this.fulfillOracleRequest.selector
         );
 
         req.add(
@@ -67,12 +69,12 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
     /**
      * Receive the response in the form of uint256
      */
-    function fulfillOracleRequest2(
+    function fulfillOracleRequest(
         bytes32 _requestId,
         uint256 _winner,
         uint _winner2,
         uint _winner3
-    ) public recordChainlinkFulfillment(_requestId) {
+    ) public virtual recordChainlinkFulfillment(_requestId) {
         emit RequestWinner(_requestId, _winner, _winner2, _winner3);
         winner = _winner;
         winner2 = _winner2;
@@ -92,5 +94,12 @@ contract APIConsumer is ChainlinkClient, ConfirmedOwner {
 
     function setWinner(uint id) public {
         winner = id;
+    }
+
+    function setWinner2(uint id) public {
+        winner2 = id;
+    }
+    function setWinner3(uint id) public {
+        winner3 = id;
     }
 }

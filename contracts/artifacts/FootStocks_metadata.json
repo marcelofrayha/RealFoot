@@ -132,6 +132,18 @@
 						"internalType": "uint256",
 						"name": "winner",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "winner2",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "winner3",
+						"type": "uint256"
 					}
 				],
 				"name": "RequestWinner",
@@ -345,9 +357,19 @@
 						"internalType": "uint256",
 						"name": "_winner",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_winner2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_winner3",
+						"type": "uint256"
 					}
 				],
-				"name": "fulfillParameters",
+				"name": "fulfillOracleRequest2",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -660,6 +682,32 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "setWinner2",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "setWinner3",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes4",
 						"name": "interfaceId",
 						"type": "bytes4"
@@ -879,7 +927,7 @@
 				"acceptOwnership()": {
 					"notice": "Allows an ownership transfer to be completed by the recipient."
 				},
-				"fulfillParameters(bytes32,uint256)": {
+				"fulfillOracleRequest2(bytes32,uint256,uint256,uint256)": {
 					"notice": "Receive the response in the form of uint256"
 				},
 				"owner()": {
@@ -1099,19 +1147,19 @@
 			]
 		},
 		"contracts/ChainlinkConsumer.sol": {
-			"keccak256": "0x462a7f7d3ae19a77aec9d6363ce6b896cdbe570cfce0f28b02cac3e5ea0387e5",
+			"keccak256": "0xfd015502ced4781c41f87a5881bd236ba919f2a4417e048c5bc526f1a08cafd1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://49f611eec9bfaa43f44f8574e81d45dbc148081cf9f15786f957788562eedf9c",
-				"dweb:/ipfs/QmSXXE7jHMbi18wqgnn3XNkw4N63eTEbXHXn2vSQG2ryfs"
+				"bzz-raw://1762648b2048ec34ef3d71d50f7afc61aab38a876810f5a28a04c52fa6ad0e23",
+				"dweb:/ipfs/QmfHrkcGqM7gxUHTFLdB8XLBdcHwRKgJBhjRYfADmSv3ny"
 			]
 		},
 		"contracts/SellYourBet.sol": {
-			"keccak256": "0x6e8eec5d6d6807ba55277f6cb6d7f4064ff8a510a9420b631d2b99bfd06c822f",
+			"keccak256": "0xca98248f9f39a16ce68dd911f69be370fbf6eb2f5cde296324228bf9f83ca02e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a7070b30b2470433ae23932e1430793dc530460faf1e78ae76c21a0dea6c99a9",
-				"dweb:/ipfs/QmPGA711trAn4GRTcRanx6nu2nasuv3XbDd2MDUTBW3qDz"
+				"bzz-raw://fb442daf3357d585a550ef20a35d42731c17a5ee42cc8f1edf5094befce91887",
+				"dweb:/ipfs/QmXEeVSkXbchpHn1Aj8vqHtn2z4qqKCcVpV5oXmuTNKGRn"
 			]
 		}
 	},

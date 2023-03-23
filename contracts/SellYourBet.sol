@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
@@ -7,11 +7,12 @@ import { APIConsumer, ConfirmedOwner } from  "./ChainlinkConsumer.sol";
 
 
 /// @custom:security-contact marcelofrayha@gmail.com
-contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
+contract SweepStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
 
     uint creationTime;
+    uint[3] public payout;
+    bool private payoutDefined = false;
     address private _owner;
-    bool public isActive;    
     mapping (uint => uint) public mintPrice;
     mapping (uint => mapping(address => uint)) public transferPrice;
     mapping (uint => address[]) public tokenOwners; 
@@ -25,14 +26,13 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
         ERC1155("https://ipfs.io/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn")
     {
         _owner = msg.sender;
-        isActive = true;
         creationTime = block.timestamp;
     }
 
     function setURI(string memory newuri) external onlyOwner {
         _setURI(newuri);
     }
-    // Updates the list of all the owners a NFT has
+    // Updates the list of all the owners of a NFT 
     function updateOwnersList (uint id, address account) private {
         bool inTheList = false;
         for (uint i = 0; i < tokenOwners[id].length; i++) {
@@ -78,7 +78,7 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
     }
 
     function mint(address account, uint256 id, uint256 amount, bytes memory data) payable external {
-        require(isActive, "Not active");
+        require(winner == 0, "Not active");
         require(amount + totalSupply(id) <= 100000, "The NFT reached its cap");
         require(amount <= 20, "You can only mint 20 in the same transaction");
         if (totalSupply(id) == 0) mintPrice[id] = 100;
@@ -95,7 +95,7 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
         payable
         external
     {
-        require(isActive, "Not active");
+        require(winner == 0, "Not active");
         for (uint i = 0; i < ids.length; i++) {
             require(amounts[i] + totalSupply(ids[i]) <= 100000, "The NFT reached its cap");
             require(amounts[i] <= 20, "You can only mint 20 in the same transaction");
@@ -113,7 +113,7 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
     function destroy() public {
         require(block.timestamp > creationTime + 400 days);
         payable(_owner).transfer(address(this).balance);
-        isActive = false;
+        winner = 100000;
     }
     
     function setTokenPrice(uint id, uint price ) external {
@@ -122,7 +122,7 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
     }
 
     function buyToken(uint id, uint amount, address nftOwner) payable public {
-        require(isActive, "Not active");
+        require(winner == 0, "Not active");
         require(msg.value == transferPrice[id][nftOwner], "The value sent must match the price");
         require(amount <= balanceOf(nftOwner, id), "You can't buy that much");
         require(winner == 0, "We already have a winner, the market is closed");
@@ -130,20 +130,68 @@ contract FootStocks is ERC1155, ERC1155Supply, ConfirmedOwner, APIConsumer {
         payable(_owner).transfer(transferPrice[id][nftOwner]*5/10000);
         (bool success, ) = address(this).call(abi.encodeWithSignature("safeTransferFrom(address,address,uint256,uint256,bytes)", nftOwner, msg.sender, id, amount, ""));
         require(success, "Function call failed");
+        updateOwnersList(id, msg.sender);
     }
 
-    function payWinner() payable external {
-        require(isActive, "Not active");
+    function calculatePayout() private {
+        uint balance = address(this).balance;
+        payout[0] = balance / 4;
+        payout[1] = balance / 2;
+        payout[2] = balance / 4;
+    }
+
+    function payWinner() payable public {
+        if (payoutDefined == false) calculatePayout();
         require (winner != 0, "There is no winner");
-        require (exists(winner), "No one minted the winner's NFT");
+        require (balanceOf(msg.sender, winner) != 0, "You don't have this NFT");
+        uint balance = balanceOf(msg.sender, winner);
+        _safeTransferFrom(msg.sender, 0x8431717927C4a3343bCf1626e7B5B1D31E240406, winner, balance, "");
+        updateOwnersList(winner, 0x8431717927C4a3343bCf1626e7B5B1D31E240406);
         uint supply = totalSupply(winner);
-        uint value = address(this).balance;
-        for (uint i = 0; i < getOwnersList(winner).length; i++) {
-            address nftOwner = tokenOwners[winner][i];
-            uint balance = balanceOf(nftOwner, winner);
-            payable(nftOwner).transfer(value * balance / supply);
-        }
-        isActive = false;
+        payable(msg.sender).transfer(payout[0] * balance / supply);
+        payoutDefined = true;
+
+        // uint supply2 = totalSupply(winner2);
+        // uint supply3 = totalSupply(winner3);
+        // for (uint i = 0; i < getOwnersList(winner).length; i++) {
+        //     address nftOwner = tokenOwners[winner][i];
+        //     uint balance = balanceOf(nftOwner, winner);
+        //     payable(nftOwner).transfer(value * balance / supply);
+        // }
+        // for (uint i = 0; i < getOwnersList(winner2).length; i++) {
+        //     address nftOwner = tokenOwners[winner2][i];
+        //     uint balance = balanceOf(nftOwner, winner2);
+        //     payable(nftOwner).transfer(value * balance / supply2);
+        // }
+        // for (uint i = 0; i < getOwnersList(winner3).length; i++) {
+        //     address nftOwner = tokenOwners[winner3][i];
+        //     uint balance = balanceOf(nftOwner, winner3);
+        //     payable(nftOwner).transfer(value * balance / supply3);
+        // }
+    }
+
+    function payWinner2() payable public {
+        if (payoutDefined == false) calculatePayout();
+        require (winner2 != 0, "There is no winner");
+        require (balanceOf(msg.sender, winner2) != 0, "You don't have this NFT");
+        uint balance = balanceOf(msg.sender, winner2);
+        _safeTransferFrom(msg.sender, 0x8431717927C4a3343bCf1626e7B5B1D31E240406, winner2, balance, "");
+        updateOwnersList(winner2, 0x8431717927C4a3343bCf1626e7B5B1D31E240406);
+        uint supply = totalSupply(winner2);
+        payable(msg.sender).transfer(payout[1] * balance / supply);
+        payoutDefined = true;
+    }
+
+    function payWinner3() payable public {
+        if (payoutDefined == false) calculatePayout();
+        require (winner3 != 0, "There is no winner");
+        require (balanceOf(msg.sender, winner3) != 0, "You don't have this NFT");
+        uint balance = balanceOf(msg.sender, winner3);
+        _safeTransferFrom(msg.sender, 0x8431717927C4a3343bCf1626e7B5B1D31E240406, winner3, balance, "");
+        updateOwnersList(winner3, 0x8431717927C4a3343bCf1626e7B5B1D31E240406);
+        uint supply = totalSupply(winner3);
+        payable(msg.sender).transfer(payout[2] * balance / supply);
+        payoutDefined = true;
     }
 
     // function updateListOfOwners () public {

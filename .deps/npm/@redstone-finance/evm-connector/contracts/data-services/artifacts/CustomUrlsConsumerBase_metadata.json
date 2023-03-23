@@ -1,0 +1,298 @@
+{
+	"compiler": {
+		"version": "0.8.13+commit.abaa5c0e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "CalldataMustHaveValidPayload",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CalldataOverOrUnderFlow",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "CanNotPickMedianOfEmptyArray",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "EachSignerMustProvideTheSameValue",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "EmptyCalldataPointersArr",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "IncorrectUnsignedMetadataSize",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "receivedSignersCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requiredSignersCount",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientNumberOfUniqueSigners",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidCalldataPointer",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receivedSigner",
+						"type": "address"
+					}
+				],
+				"name": "SignerNotAuthorised",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "receivedTimestampSeconds",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockTimestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "TimestampFromTooLongFuture",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "receivedTimestampSeconds",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "blockTimestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "TimestampIsTooOld",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					}
+				],
+				"name": "aggregateValues",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "signerAddress",
+						"type": "address"
+					}
+				],
+				"name": "getAuthorisedSignerIndex",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getUniqueSignersThreshold",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "receivedTimestampMilliseconds",
+						"type": "uint256"
+					}
+				],
+				"name": "validateTimestamp",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"aggregateValues(uint256[])": {
+					"details": "This function may be overridden by the child consumer contract. It should aggregate values from different signers to a single uint value. By default, it calculates the median value",
+					"params": {
+						"values": "An array of uint256 values from different signers"
+					},
+					"returns": {
+						"_0": "Result of the aggregation in the form of a single number"
+					}
+				},
+				"getUniqueSignersThreshold()": {
+					"details": "This function should be overridden by the child consumer contract.",
+					"returns": {
+						"_0": "The minimum required value of unique authorised signers"
+					}
+				},
+				"validateTimestamp(uint256)": {
+					"details": "This function may be overridden by the child consumer contract. It should validate the timestamp against the current time (block.timestamp) It should revert with a helpful message if the timestamp is not valid",
+					"params": {
+						"receivedTimestampMilliseconds": "Timestamp extracted from calldata"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/npm/@redstone-finance/evm-connector/contracts/data-services/CustomUrlsConsumerBase.sol": "CustomUrlsConsumerBase"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/npm/@redstone-finance/evm-connector/contracts/core/CalldataExtractor.sol": {
+			"keccak256": "0xdd3de13c7194743e56133e19bb228a88d446e41a9494215c8e4b908155644eae",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://f69c992aeaabc2823648fa7be053d5c9b93e3914f2397f6213e87ecf167ed226",
+				"dweb:/ipfs/QmRgynehX4BGMMsuEVg8LYUp55M8u1WELSCP4amYgLWprn"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/core/RedstoneConstants.sol": {
+			"keccak256": "0x82ab78ed59f4a811f5ab5c32064099235d753f98df42c087476ddabbf0348f21",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://7c4b78b95bff4fbe0c57747c812c22c0f3b9581f4cf2cbf8af0c21aad6ca880f",
+				"dweb:/ipfs/QmdRBJUpdPUZPF4mwy6M4EivSQsWBvH4qbmtnaau3ft9V3"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/core/RedstoneConsumerBase.sol": {
+			"keccak256": "0xcea791cdbc054d88248f94d600761fe2b33721f016608444828b400511c2f14a",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://2bae01e69b26c58cbb0fcb2ce192e3fcde27f32855b2546fedf13d85475f7ede",
+				"dweb:/ipfs/QmVTHJdboEmwGtwxZuw8xhP142cx6x7UJ5na4uTGEevS4k"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/core/RedstoneConsumerNumericBase.sol": {
+			"keccak256": "0xe8e70ed8bb3efc527dccaf5919587c7ff3980836256d7d8db8f632721a3cf956",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://550168f845b478dbb81f3f5dcf71cc61d64558a6dd676d95d2c46008b5e3e380",
+				"dweb:/ipfs/Qmc2F5p3NdVubj733YqBGHyhA4TBnvEbqRRadkedboKw8Y"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/core/RedstoneDefaultsLib.sol": {
+			"keccak256": "0xe39ee1618d15944d6f44918f02f71d0d604fb678dbdbf36ca1eeecc86858ff25",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://2bcb45b6abee6ba18742a9e4374afc04f4be16de11d154ca846e96a37f3b6e73",
+				"dweb:/ipfs/QmYUqJyfdj7YwvGthGKxzryC2mGQGTGZy7SYZZt7m7w3oo"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/data-services/CustomUrlsConsumerBase.sol": {
+			"keccak256": "0xb3d4d5189ed745b1a1d026b3e85b7aa80c45ebf25a699d2dd59b766f69b9c992",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://3a0a3e72e974a361fcaef4318057e25c02abd12a05efd9af6eb055b19791fe46",
+				"dweb:/ipfs/Qmb7Ti8QNjWJv6Bi6xSa5x5FgVzJfwWZeRAXb9xu2FXiUK"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/libs/BitmapLib.sol": {
+			"keccak256": "0x9762198cae997eebad303a7a43a6133908646ed30811285085c9ea9cbd2a5e07",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://29f56e08f523a11d5f1ab083f5c613e7654a74613b2270f9e8860fa493bf2ceb",
+				"dweb:/ipfs/QmUpD9U3GV7ZpjFEVvqSXGYfvwkBdeV5CoTiH1EzH8woJa"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/libs/NumericArrayLib.sol": {
+			"keccak256": "0x9b1a3a433a450cbe90e85801ddf891ab26deeda02d45a2d67e24443cdc33e764",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://967761b57c78ea600ba6efa5a49cdd0c020339596871c22ada9d309eaa4d8acd",
+				"dweb:/ipfs/QmUeGHZkXdovDYwhwUKj5pPfdS4hVv68tzhjVXieWCQtUt"
+			]
+		},
+		".deps/npm/@redstone-finance/evm-connector/contracts/libs/SignatureLib.sol": {
+			"keccak256": "0x06037b440e5eab52d550718543c463da00ac7231f303a503178ad5191e154310",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7bfb27ed76efa93423e40c276d2caefeab957561946f808169511b87d127e4c4",
+				"dweb:/ipfs/QmT3wt6FhAf7PFDZ1Z2mNx1671Yudz7UCjqnoFkEKCgt92"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
+			"keccak256": "0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65",
+				"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN"
+			]
+		}
+	},
+	"version": 1
+}
