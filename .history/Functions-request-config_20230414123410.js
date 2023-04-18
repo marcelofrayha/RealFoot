@@ -1,4 +1,6 @@
 const fs = require("fs")
+import { teamsTable1 } from './teamsTable1.js'
+
 
 // Loads environment variables from .env file (if it exists)
 require("dotenv").config()
@@ -38,9 +40,9 @@ const requestConfig = {
   // ETH wallet key used to sign secrets so they cannot be accessed by a 3rd party
   walletPrivateKey: process.env["PRIVATE_KEY"],
   // Args (string only array) can be accessed within the source code with `args[index]` (ie: args[0]).
-  args: ["germany"],
+  args: ["england"],
   // Expected type of the returned value
-  expectedReturnType: ReturnType.Buffer,
+  expectedReturnType: ReturnType.string,
   // Redundant URLs which point to encrypted off-chain secrets
   secretsURLs: [],
 }

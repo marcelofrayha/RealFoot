@@ -11,7 +11,7 @@ contract SweepStocks is ERC1155, ERC1155Supply, ConfirmedOwner, FunctionsConsume
     uint creationTime;
     uint[3] public payout;
     bool private payoutDefined = false;
-    address private _owner; //contract owner - this will be a multisig
+    address private _owner; //contract owner - this will be a multisig or zk wallet
     mapping (uint => uint) public mintPrice; //price to create a new NFT, this is handled by the contract
     mapping (uint => mapping (address => uint)) public transferPrice; //price set by the owner of a NFT
 

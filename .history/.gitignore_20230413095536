@@ -117,5 +117,3 @@ updatedAllowlist.csv
 
 # Chainlink Functions request artifacts
 .chainlink_functions
-
-node_modules
