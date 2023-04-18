@@ -1,0 +1,218 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"aggregateValues(uint256[])": "b24ebfcc",
+			"getAuthorisedSignerIndex(address)": "3ce142f5",
+			"getUniqueSignersThreshold()": "f90c4924",
+			"validateTimestamp(uint256)": "f50b2efe"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [],
+			"name": "CalldataMustHaveValidPayload",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "CalldataOverOrUnderFlow",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "CanNotPickMedianOfEmptyArray",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "EachSignerMustProvideTheSameValue",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "EmptyCalldataPointersArr",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "IncorrectUnsignedMetadataSize",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "receivedSignersCount",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "requiredSignersCount",
+					"type": "uint256"
+				}
+			],
+			"name": "InsufficientNumberOfUniqueSigners",
+			"type": "error"
+		},
+		{
+			"inputs": [],
+			"name": "InvalidCalldataPointer",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "receivedSigner",
+					"type": "address"
+				}
+			],
+			"name": "SignerNotAuthorised",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "receivedTimestampSeconds",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "blockTimestamp",
+					"type": "uint256"
+				}
+			],
+			"name": "TimestampFromTooLongFuture",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "receivedTimestampSeconds",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "blockTimestamp",
+					"type": "uint256"
+				}
+			],
+			"name": "TimestampIsTooOld",
+			"type": "error"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "values",
+					"type": "uint256[]"
+				}
+			],
+			"name": "aggregateValues",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "receivedSigner",
+					"type": "address"
+				}
+			],
+			"name": "getAuthorisedSignerIndex",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getUniqueSignersThreshold",
+			"outputs": [
+				{
+					"internalType": "uint8",
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "receivedTimestampMilliseconds",
+					"type": "uint256"
+				}
+			],
+			"name": "validateTimestamp",
+			"outputs": [],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
+}

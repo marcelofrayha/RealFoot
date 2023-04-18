@@ -1,0 +1,69 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122016505201f90f3ed34566818cdf17ee31e458079e6c442aa1356f27a12e1447cc64736f6c63430008130033",
+			"opcodes": "PUSH1 0x56 PUSH1 0x37 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x2A JUMPI PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x0 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 AND POP MSTORE ADD 0xF9 0xF RETURNDATACOPY 0xD3 GASLIMIT PUSH7 0x818CDF17EE31E4 PC SMOD SWAP15 PUSH13 0x442AA1356F27A12E1447CC6473 PUSH16 0x6C634300081300330000000000000000 ",
+			"sourceMap": "293:3494:0:-:0;;;;;;;;;;;;;;;-1:-1:-1;;;293:3494:0;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122016505201f90f3ed34566818cdf17ee31e458079e6c442aa1356f27a12e1447cc64736f6c63430008130033",
+			"opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 AND POP MSTORE ADD 0xF9 0xF RETURNDATACOPY 0xD3 GASLIMIT PUSH7 0x818CDF17EE31E4 PC SMOD SWAP15 PUSH13 0x442AA1356F27A12E1447CC6473 PUSH16 0x6C634300081300330000000000000000 ",
+			"sourceMap": "293:3494:0:-:0;;;;;;;;"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "17200",
+				"executionCost": "103",
+				"totalCost": "17303"
+			},
+			"internal": {
+				"add(struct Chainlink.Request memory,string memory,string memory)": "infinite",
+				"addBytes(struct Chainlink.Request memory,string memory,bytes memory)": "infinite",
+				"addInt(struct Chainlink.Request memory,string memory,int256)": "infinite",
+				"addStringArray(struct Chainlink.Request memory,string memory,string memory[] memory)": "infinite",
+				"addUint(struct Chainlink.Request memory,string memory,uint256)": "infinite",
+				"initialize(struct Chainlink.Request memory,bytes32,address,bytes4)": "infinite",
+				"setBuffer(struct Chainlink.Request memory,bytes memory)": "infinite"
+			}
+		},
+		"methodIdentifiers": {}
+	},
+	"abi": []
+}
